@@ -7,6 +7,15 @@ export const allProducts = {
         name: 'productName',
         title: 'Product Name',
         type: 'string',
+      },    
+      {
+        title: 'Slug',
+        name: 'slug',
+        type: 'slug',
+        options: {
+          source: 'productName',
+          maxLength: 200,
+        }
       },
       {
         name: 'category',

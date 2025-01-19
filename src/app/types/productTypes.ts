@@ -1,11 +1,12 @@
 export default interface IProduct {
-  id: string;
+  _id: string;
   productName: string;
+  slug: string;
   category: string;
   price: number;
   inventory: number;
-  status: string;
-  colors: string[],
-  image: string;
   description: string;
+  colors: string[];
+  status: string;
+  image: string;
 }
