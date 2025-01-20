@@ -101,14 +101,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </p>
           </div>
 
-          {/* Add to Cart */}
           <div className="mt-10">
             <AddtoCartButton product={formattedProduct} />
           </div>
         </div>
       </div>
 
-      {/* Related Products */}
       <div className="mt-12">
         <RelatedProducts category={product.category} currentSlug={slug} />
       </div>

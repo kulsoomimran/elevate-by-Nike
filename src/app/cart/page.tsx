@@ -66,7 +66,7 @@ export default function CartPage() {
 
         {cartItems.length === 0 && wishlistItems.length === 0 ? (
           <div className="text-center">
-            <p className="text-gray-500 font-medium mb-6">Your cart and wishlist are empty.</p>
+            <p className="text-gray-500 font-medium mb-6">Your cart is empty.</p>
             <button
               onClick={() => router.push('/Products')}
               className="mt-4 py-2 px-6 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"

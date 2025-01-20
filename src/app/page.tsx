@@ -1,6 +1,9 @@
+import ProductsPage from "./Products/page";
+
 export default function Home(){
   return(
-    <div>Hello
+    <div>
+      <ProductsPage/>
     </div>
   )
 }
