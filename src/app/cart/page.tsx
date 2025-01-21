@@ -55,7 +55,12 @@ export default function CartPage() {
     updateLocalStorage('cart', updatedCartItems);
   };
 
-
+  const handleCheckout = () => {
+    // Store cart data for checkout in local storage
+    localStorage.setItem('cartForCheckout', JSON.stringify(cartItems));
+    // Navigate to checkout page
+    router.push('/CheckOut');
+  };
 
   return (
     <div className="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen py-12">
@@ -76,7 +81,6 @@ export default function CartPage() {
           </div>
         ) : (
           <>
-
             {cartItems.length > 0 && (
               <div className="mb-12">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Cart Items</h2>
@@ -131,7 +135,10 @@ export default function CartPage() {
                         .reduce((total, item) => total + item.price * item.quantity, 0)
                         .toFixed(2)}
                     </p>
-                    <button className="mt-6 w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    <button
+                      onClick={handleCheckout}
+                      className="mt-6 w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
                       Checkout
                     </button>
                   </div>

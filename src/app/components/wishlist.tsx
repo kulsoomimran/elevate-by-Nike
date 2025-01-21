@@ -22,18 +22,16 @@ const WishlistButton: React.FC<WishlistButtonProps> = ({ product }) => {
 
   useEffect(() => {
     try {
-      // Retrieve and validate the wishlist from localStorage
       const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
       if (Array.isArray(wishlist)) {
         const productInWishlist = wishlist.find((item: { id: string }) => item.id === product.id);
         setIsInWishlist(!!productInWishlist);
       } else {
-        // If wishlist is invalid, reset it to an empty array
         localStorage.setItem('wishlist', JSON.stringify([]));
       }
     } catch (error) {
       console.error('Error parsing wishlist from localStorage:', error);
-      localStorage.setItem('wishlist', JSON.stringify([])); // Reset on error
+      localStorage.setItem('wishlist', JSON.stringify([])); 
     }
   }, [product.id]);
 
