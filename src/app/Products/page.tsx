@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useState, useMemo, useEffect } from 'react';
 import SearchBar from '../components/searchbar';
 import Dropdown from '../components/filter/filterDropdown';
@@ -18,6 +18,7 @@ export default function ProductsPage() {
   });
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
+  // Fetch products on component mount
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -30,20 +31,34 @@ export default function ProductsPage() {
     getProducts();
   }, []);
 
+  // Get unique categories from products
   const uniqueCategories: string[] = useMemo(() => {
-    return Array.from(new Set(products.map((product) => product.category || ''))).filter(Boolean);
+    return Array.from(
+      new Set(products.map((product) => product.category || ''))
+    ).filter(Boolean);
   }, [products]);
 
+  // Get unique statuses from products
   const uniqueStatuses: string[] = useMemo(() => {
-    return Array.from(new Set(products.map((product) => product.status || ''))).filter(Boolean);
+    return Array.from(
+      new Set(products.map((product) => product.status || ''))
+    ).filter(Boolean);
   }, [products]);
 
-  const filteredProducts = useFilteredProducts(products, searchQuery, selectedCategory, selectedFilter);
+  // Filtered products based on search, selected category, and selected filters
+  const filteredProducts = useFilteredProducts(
+    products,
+    searchQuery,
+    selectedCategory,  // Pass selectedCategory as the 3rd argument
+    selectedFilter
+  );
 
   return (
     <div className="bg-gradient-to-b from-white to-gray-50 min-h-screen py-12">
       <div className="flex flex-col sm:flex-row sm:justify-between items-center mb-6">
+
         <SearchBar onSearch={setSearchQuery} />
+
         <Dropdown
           activeDropdown={activeDropdown}
           setActiveDropdown={setActiveDropdown}
@@ -53,6 +68,7 @@ export default function ProductsPage() {
           uniqueStatuses={uniqueStatuses}
         />
       </div>
+
       <ProductsGrid products={filteredProducts} />
     </div>
   );

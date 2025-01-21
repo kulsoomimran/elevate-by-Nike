@@ -1,5 +1,5 @@
 'use client';
-
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 interface CartItem {
@@ -42,10 +42,12 @@ export default function CheckoutPage() {
                     key={item.id}
                     className="flex items-center space-x-6 border p-5 rounded-lg bg-white shadow-lg transform transition-transform hover:scale-105 duration-200 ease-in-out"
                   >
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.productName}
-                      className="w-28 h-28 object-cover rounded-lg shadow-md"
+                      width={150}
+                      height={150}
+                      className="object-cover rounded-lg shadow-md"
                     />
                     <div className="flex-1">
                       <h2 className="text-xl font-semibold text-gray-800">{item.productName}</h2>
