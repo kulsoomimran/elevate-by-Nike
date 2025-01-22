@@ -1,0 +1,14 @@
+Test Case ID,Test Case,Steps Taken,Outcome,Status
+TC001,Display products listing page,Open the product listing page,All products appears with correct details,Passed
+TC002,Image Rendering,Verify product image loads correctly,All images are displayed without any distortion,Passed
+TC003,Category Filter,Select a category from the filter panel.,Displays only products from the selected category.,Passed
+TC004,Price Filter,To ensure the price filter correctly sorts products Low to High and High to Low.,"For ""Low to High,"" the cheapest product appears first, and for  ""High to Low,"" the most expensive product appears first.",Passed
+TC005,Status Filter,Select a status from the filter panel.,Displays only products from the selected status.,Passed
+TC006,Search product,Enter keyword in search bar.,Displays products matching the search criteria.,Passed
+TC007,Add products to cart,"Add products to cart, update quantity, and calculate totals.",Products are added and removed correctly; totals update accurately.,Passed
+TC008,Navigate to Product Details Page,Navigate to the specific product details page from the product listing page.,Correct product details page load on the next page,Passed
+TC009,Add products to the wishlist,"Add products to wishlist, reloads page and verify persistance",Wishlist items persist across sessions.,Passed
+TC010,Register a user and log in with credentials.,"Fill out registration form,Attempt login and get access to the registered account",Failed to store user information in backend,Failed
+TC011,View on Google Chrome and Microsoft Edge,Open the chrome and Microsoft Edge to view the website,It shows responsiveness,Passed
+TC012,Inspect on Browser,Inspect the website on browser for different screens,It shows responsiveness,Passed
+TC013,Related Product,Show related products to the opened product,Successfully render related products,Passed
