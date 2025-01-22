@@ -4,14 +4,20 @@ import CategoryFilter from './categoryFilter';
 import PriceFilter from './priceFilter';
 import StatusFilter from './statusFilter';
 
+interface Filter {
+  category: string | null;
+  price: string | null;
+  status: string | null;
+}
+
 interface DropdownProps {
   activeDropdown: string | null;
   setActiveDropdown: React.Dispatch<React.SetStateAction<string | null>>;
-  selectedFilter: { category: string | null; price: string | null; status: string | null };
-  setSelectedFilter: React.Dispatch<React.SetStateAction<any>>;
+  selectedFilter: Filter; // Specify the type here
+  setSelectedFilter: React.Dispatch<React.SetStateAction<Filter>>; // Specify the type here
   uniqueCategories: string[];
   uniqueStatuses: string[];
-  setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>; // Pass this to handle category selection
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -21,7 +27,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   setSelectedFilter,
   uniqueCategories,
   uniqueStatuses,
-  setSelectedCategory,  
+  setSelectedCategory,
 }) => {
   return (
     <div className="relative">
@@ -62,7 +68,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         <CategoryFilter
           uniqueCategories={uniqueCategories}
           selectedCategory={selectedFilter.category}
-          setSelectedCategory={setSelectedCategory}  // Pass setSelectedCategory here
+          setSelectedCategory={setSelectedCategory}
           setActiveDropdown={setActiveDropdown}
         />
       )}

@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { useState, useMemo, useEffect } from 'react';
 import SearchBar from '../components/searchbar';
 import Dropdown from '../components/filter/filterDropdown';
@@ -6,12 +6,13 @@ import ProductsGrid from '../components/getProducts/productGrid';
 import { fetchProducts } from '@/sanity/lib/sanity';
 import IProduct from '../types/productTypes';
 import { useFilteredProducts } from '../components/getProducts/filteredProducts';
+import { Filter } from '../types/filterTypes'; 
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedFilter, setSelectedFilter] = useState({
+  const [selectedFilter, setSelectedFilter] = useState<Filter>({
     category: null,
     price: null,
     status: null,
@@ -52,9 +53,7 @@ export default function ProductsPage() {
   return (
     <div className="bg-gradient-to-b from-white to-gray-50 min-h-screen py-12">
       <div className="flex flex-col sm:flex-row sm:justify-between items-center mb-6">
-
         <SearchBar onSearch={setSearchQuery} />
-
         <Dropdown
           activeDropdown={activeDropdown}
           setActiveDropdown={setActiveDropdown}
@@ -65,7 +64,6 @@ export default function ProductsPage() {
           setSelectedCategory={setSelectedCategory}  
         />
       </div>
-
       <ProductsGrid products={filteredProducts} />
     </div>
   );

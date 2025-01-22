@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 interface CartItem {
   id: string;
@@ -11,11 +12,9 @@ interface CartItem {
   quantity: number;
 }
 
-interface WishlistItem extends CartItem {}
-
 export default function CartPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([]);
+  const [wishlistItems, setWishlistItems] = useState<CartItem[]>([]); // Fixed: used CartItem instead of WishlistItem
   const router = useRouter();
 
   useEffect(() => {
@@ -23,11 +22,11 @@ export default function CartPage() {
     const savedWishlist = JSON.parse(localStorage.getItem('wishlist') || '{}');
 
     setCartItems(Object.values(savedCart) as CartItem[]);
-    setWishlistItems(Object.values(savedWishlist) as WishlistItem[]);
+    setWishlistItems(Object.values(savedWishlist) as CartItem[]); // Fixed: used CartItem instead of WishlistItem
   }, []);
 
-  const updateLocalStorage = (key: string, items: CartItem[] | WishlistItem[]) => {
-    const newStorage = items.reduce((acc: any, item) => {
+  const updateLocalStorage = (key: string, items: CartItem[]) => {
+    const newStorage = items.reduce((acc: Record<string, CartItem>, item) => { // Fixed: used Record<string, CartItem>
       acc[item.id] = item;
       return acc;
     }, {});
@@ -89,10 +88,12 @@ export default function CartPage() {
                         key={item.id}
                         className="flex items-center space-x-4 border p-4 rounded-lg bg-white shadow"
                       >
-                        <img
+                        <Image
                           src={item.image}
                           alt={item.productName}
                           className="w-24 h-24 object-cover rounded-lg"
+                          width={96} 
+                          height={96}
                         />
                         <div className="flex-1">
                           <h2 className="text-lg font-semibold">{item.productName}</h2>

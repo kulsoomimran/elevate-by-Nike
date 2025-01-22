@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface WishlistItem {
   id: string;
@@ -17,13 +18,6 @@ export default function WishlistPage() {
     setWishlistItems(savedWishlist);
   }, []);
 
-  const addToWishlist = (item: WishlistItem) => {
-    const updatedWishlist = [...wishlistItems, item];
-    setWishlistItems(updatedWishlist);
-
-    localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
-  };
-
   const removeFromWishlist = (id: string) => {
     const updatedWishlist = wishlistItems.filter(item => item.id !== id);
     setWishlistItems(updatedWishlist);
@@ -39,7 +33,6 @@ export default function WishlistPage() {
           Your Wishlist
         </h1>
 
-        {/* Wishlist Content */}
         {wishlistItems.length === 0 ? (
           <div className="text-center text-gray-500 font-medium">
             Your wishlist is empty.
@@ -54,7 +47,7 @@ export default function WishlistPage() {
                   className="flex items-center space-x-4 border p-4 rounded-lg"
                 >
 
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.productName}
                     className="w-20 h-20 object-cover rounded"
