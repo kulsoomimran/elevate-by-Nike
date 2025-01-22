@@ -11,6 +11,7 @@ interface DropdownProps {
   setSelectedFilter: React.Dispatch<React.SetStateAction<any>>;
   uniqueCategories: string[];
   uniqueStatuses: string[];
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>; // Pass this to handle category selection
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -20,10 +21,10 @@ const Dropdown: React.FC<DropdownProps> = ({
   setSelectedFilter,
   uniqueCategories,
   uniqueStatuses,
+  setSelectedCategory,  
 }) => {
   return (
     <div className="relative">
-      {/* Button to toggle dropdown */}
       <button
         className="flex items-center space-x-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
         onClick={() => setActiveDropdown((prev) => (prev === 'main' ? null : 'main'))}
@@ -34,8 +35,6 @@ const Dropdown: React.FC<DropdownProps> = ({
           className={`ml-2 transition-transform ${activeDropdown === 'main' ? 'rotate-180' : ''}`}
         />
       </button>
-
-      {/* Main Dropdown Menu */}
       {activeDropdown === 'main' && (
         <ul className="absolute top-full left-0 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-md z-10 max-h-72 overflow-y-auto">
           <li
@@ -59,12 +58,11 @@ const Dropdown: React.FC<DropdownProps> = ({
         </ul>
       )}
 
-      {/* Conditional Filters */}
       {activeDropdown === 'category' && (
         <CategoryFilter
           uniqueCategories={uniqueCategories}
           selectedCategory={selectedFilter.category}
-          setSelectedFilter={setSelectedFilter}
+          setSelectedCategory={setSelectedCategory}  // Pass setSelectedCategory here
           setActiveDropdown={setActiveDropdown}
         />
       )}

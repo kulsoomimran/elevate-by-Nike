@@ -18,7 +18,6 @@ export default function ProductsPage() {
   });
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  // Fetch products on component mount
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -31,25 +30,22 @@ export default function ProductsPage() {
     getProducts();
   }, []);
 
-  // Get unique categories from products
   const uniqueCategories: string[] = useMemo(() => {
     return Array.from(
       new Set(products.map((product) => product.category || ''))
     ).filter(Boolean);
   }, [products]);
 
-  // Get unique statuses from products
   const uniqueStatuses: string[] = useMemo(() => {
     return Array.from(
       new Set(products.map((product) => product.status || ''))
     ).filter(Boolean);
   }, [products]);
 
-  // Filtered products based on search, selected category, and selected filters
   const filteredProducts = useFilteredProducts(
     products,
     searchQuery,
-    selectedCategory,  // Pass selectedCategory as the 3rd argument
+    selectedCategory, 
     selectedFilter
   );
 
@@ -66,6 +62,7 @@ export default function ProductsPage() {
           setSelectedFilter={setSelectedFilter}
           uniqueCategories={uniqueCategories}
           uniqueStatuses={uniqueStatuses}
+          setSelectedCategory={setSelectedCategory}  
         />
       </div>
 

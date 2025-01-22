@@ -33,7 +33,6 @@ export default function AddtoCartButton({ product }: AddtoCartButtonProps) {
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // Show custom message
     setMessage(`${product.productName} has been added to your cart!`);
   };
 

@@ -14,7 +14,6 @@ export default function CheckoutPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
-    // Retrieve cart data stored in localStorage
     const cartForCheckout = localStorage.getItem('cartForCheckout');
     if (cartForCheckout) {
       setCartItems(JSON.parse(cartForCheckout));

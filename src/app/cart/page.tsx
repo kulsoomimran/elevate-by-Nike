@@ -56,9 +56,7 @@ export default function CartPage() {
   };
 
   const handleCheckout = () => {
-    // Store cart data for checkout in local storage
     localStorage.setItem('cartForCheckout', JSON.stringify(cartItems));
-    // Navigate to checkout page
     router.push('/CheckOut');
   };
 

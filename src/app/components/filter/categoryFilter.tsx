@@ -1,45 +1,46 @@
 import React from 'react';
 
-type SelectedFilter = {
-  category: string | null;
-  price: string | null;
-  status: string | null;
-};
-
 interface CategoryFilterProps {
   uniqueCategories: string[];
   selectedCategory: string | null;
-  setSelectedFilter: React.Dispatch<React.SetStateAction<SelectedFilter>>;
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>;
   setActiveDropdown: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const CategoryFilter: React.FC<CategoryFilterProps> = ({
   uniqueCategories,
   selectedCategory,
-  setSelectedFilter,
+  setSelectedCategory,
   setActiveDropdown,
 }) => {
+  const handleCategoryChange = (category: string | null) => {
+    setSelectedCategory(category); 
+    setActiveDropdown(null); 
+  };
+
   return (
-    <ul className="absolute top-full left-0 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-md z-10">
-      <li
-        className="cursor-pointer px-4 py-2 hover:bg-gray-100 text-gray-700"
-        onClick={() => setSelectedFilter((prev) => ({ ...prev, category: null }))}
-      >
-        All Categories
-      </li>
-      {uniqueCategories.map((category) => (
+    <div className="p-4 bg-gray-50">
+      <h3 className="text-lg font-semibold mb-2">Select Category</h3>
+      <ul>
         <li
-          key={category}
-          className={`cursor-pointer px-4 py-2 hover:bg-gray-100 text-gray-700 ${selectedCategory === category ? 'font-bold' : ''}`}
-          onClick={() => {
-            setSelectedFilter((prev) => ({ ...prev, category }));
-            setActiveDropdown(null);
-          }}
+          className="cursor-pointer px-4 py-2 hover:bg-gray-200 rounded-lg"
+          onClick={() => handleCategoryChange(null)} 
         >
-          {category}
+          All Categories
         </li>
-      ))}
-    </ul>
+        {uniqueCategories.map((category) => (
+          <li
+            key={category}
+            className={`cursor-pointer px-4 py-2 hover:bg-gray-200 rounded-lg ${
+              selectedCategory === category ? 'bg-gray-300' : ''
+            }`}
+            onClick={() => handleCategoryChange(category)}
+          >
+            {category}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
