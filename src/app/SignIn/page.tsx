@@ -18,7 +18,7 @@ const SignIn = () => {
           <div className="flex flex-col items-center">
             <UserButton />
             <p className="mt-4 text-lg text-center">
-              Use coupon code <span className="text-red-500 font-bold">NIKE10</span> for 10% off on your first few purchases.
+              Use coupon code <span className="text-red-500 font-bold">NIKE2021</span> for 10% off on your first few purchases.
             </p>
           </div>
         </SignedIn>
@@ -58,7 +58,7 @@ const SignIn = () => {
           </div>
 
           <p className="text-sm text-gray-500 mt-6 text-center">
-            By logging in, you agree to Nike's <a href="#" className="underline hover:text-gray-800">Privacy Policy</a> and <a href="#" className="underline hover:text-gray-800">Terms of Use</a>.
+            By logging in, you agree to Nike&apos;s <a href="#" className="underline hover:text-gray-800">Privacy Policy</a> and <a href="#" className="underline hover:text-gray-800">Terms of Use</a>.
           </p>
 
           <p className="w-full flex items-center justify-center bg-black text-white py-3 rounded-md mt-6 hover:bg-gray-800 transition duration-300">
