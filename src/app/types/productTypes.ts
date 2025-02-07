@@ -6,6 +6,7 @@ export default interface IProduct {
   price: number;
   inventory: number;
   description: string;
+  quantity: number;
   colors: string[];
   status: string;
   image: string;

@@ -1,7 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import bcrypt from 'bcryptjs';
-import mutationClient from '@/sanity/lib/mutationClient';
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -19,29 +17,9 @@ const RegisterPage = () => {
       return;
     }
 
-    setIsLoading(true);
+      setIsLoading(true);
+    };
 
-    try {
-      const hashedPassword = await bcrypt.hash(password, 10);
-
-      await mutationClient.create({
-        _type: 'customer',
-        email,
-        password: hashedPassword,
-        firstName,
-        lastName,
-        country,
-        gender,
-      });
-
-      alert('Registration successful!');
-    } catch (error) {
-      console.error('Error saving data:', error);
-      alert('Something went wrong. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center px-4">

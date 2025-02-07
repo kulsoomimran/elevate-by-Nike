@@ -43,6 +43,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     category: product.category,
     description: product.description,
     colors: product.colors,
+    quantity: product.quantity,
     status: product.status,
   };
 
