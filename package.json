@@ -14,7 +14,7 @@
     "@sanity/client": "^6.25.0",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.70.0",
-    "axios": "^1.7.9",
+    "axios": "^1.12.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.7",
     "nanoid": "^5.0.9",
