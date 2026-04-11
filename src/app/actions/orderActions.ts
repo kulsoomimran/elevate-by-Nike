@@ -128,10 +128,11 @@ export const createOrder = async (orderData: OrderData) => {
             success: true, 
             orderId: result._id,
         };
-    } catch (error: any) {
+    } catch (error: unknown) {
         // Don't expose detailed errors to client
         if (process.env.NODE_ENV === 'development') {
-            console.error('✗ Order creation failed:', error.message);
+            const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+            console.error('✗ Order creation failed:', errorMessage);
         }
         
         // Fallback to file storage
@@ -162,7 +163,7 @@ export const createOrder = async (orderData: OrderData) => {
                 orderId: orderId,
                 warning: 'Order saved locally'
             };
-        } catch (fileError) {
+        } catch {
             return { 
                 success: false, 
                 error: 'Failed to process order',
