@@ -5,7 +5,9 @@ const client = createClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   apiVersion: '2021-08-31',
   token: process.env.SANITY_API_TOKEN,
-  useCdn: false, 
+  useCdn: false,
+  apiHost: 'https://api.sanity.io', // Use direct API host instead of project-specific subdomain
+  requestTagPrefix: 'sanity',
 });
 
 export default client;

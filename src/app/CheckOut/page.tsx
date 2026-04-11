@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
-import client from '@/sanity/lib/client';
+import { createOrder } from '@/app/actions/orderActions';
 
 interface CartItem {
   id: string;
@@ -90,7 +90,6 @@ export default function CheckoutPage() {
 
     if (validateForm()) {
       const orderData = {
-        _type: 'order',
         fullName: formData.fullName,
         email: formData.email,
         phone: formData.phone,
@@ -98,29 +97,31 @@ export default function CheckoutPage() {
         city: formData.city,
         zipCode: formData.zipCode,
         cartItems: cartItems.map(item => ({
-          _type: 'reference',
-          _ref: item.id,
+          id: item.id,
         })),
-        totalPrice: Number(subtotal),
-        discountedPrice: Number(discountedPrice),
-        orderStatus: 'pending',
-        orderDate: new Date().toISOString(),
+        totalPrice: subtotal,
+        discountedPrice: discountedPrice,
       };
 
       try {
-        await client.create(orderData);
-        localStorage.removeItem('cartForCheckout');
+        const result = await createOrder(orderData);
+        
+        if (result.success) {
+          localStorage.removeItem('cartForCheckout');
 
-        Swal.fire({
-          title: '🎉 Order Placed!',
-          text: 'Your order has been placed successfully. You will receive a confirmation email shortly.',
-          icon: 'success',
-          confirmButtonText: 'OK',
-          timer: 5000,
-        }).then(() => {
-          setCartItems([]);
-          setFormData({ fullName: '', email: '', phone: '', address: '', city: '', zipCode: '' });
-        });
+          Swal.fire({
+            title: '🎉 Order Placed!',
+            text: 'Your order has been placed successfully. You will receive a confirmation email shortly.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            timer: 5000,
+          }).then(() => {
+            setCartItems([]);
+            setFormData({ fullName: '', email: '', phone: '', address: '', city: '', zipCode: '' });
+          });
+        } else {
+          throw new Error(result.error);
+        }
       } catch (error) {
         console.error('Error placing order:', error);
         Swal.fire({

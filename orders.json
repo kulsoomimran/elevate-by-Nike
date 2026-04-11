@@ -1,0 +1,41 @@
+[
+  {
+    "orderId": "order_1775928533605_i0pvmi43o",
+    "fullName": "Kulsoom Imran",
+    "email": "kulsoomimran1901@gmail.com",
+    "phone": "03876533410",
+    "address": "9E 23/2 Karachi",
+    "city": "Karachi",
+    "zipCode": "05444",
+    "cartItems": [
+      {
+        "id": "D24vb8qimRxTY37EypTyG0"
+      }
+    ],
+    "totalPrice": 2895,
+    "discountedPrice": 2895,
+    "orderStatus": "pending",
+    "orderDate": "2026-04-11T17:28:53.605Z"
+  },
+  {
+    "orderId": "order_1775928640232_fqpfoudlb",
+    "fullName": "Maryam Imran",
+    "email": "maryam@gmail.com",
+    "phone": "03876533410",
+    "address": "9E 23/2 Karachi",
+    "city": "Karachi",
+    "zipCode": "05444",
+    "cartItems": [
+      {
+        "id": "D24vb8qimRxTY37EypTyG0"
+      },
+      {
+        "id": "D24vb8qimRxTY37EypTyNz"
+      }
+    ],
+    "totalPrice": 5390,
+    "discountedPrice": 4851,
+    "orderStatus": "pending",
+    "orderDate": "2026-04-11T17:30:40.232Z"
+  }
+]
